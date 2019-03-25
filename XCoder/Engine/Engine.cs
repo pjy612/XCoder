@@ -16,13 +16,19 @@ namespace XCoder
     public class Engine
     {
         #region 属性
+
         public const String TemplatePath = "Template";
 
         private static Dictionary<String, String> _Templates;
+
         /// <summary>模版</summary>
-        public static Dictionary<String, String> Templates { get { return _Templates ?? (_Templates = Source.GetTemplates()); } }
+        public static Dictionary<String, String> Templates
+        {
+            get { return _Templates ?? (_Templates = Source.GetTemplates()); }
+        }
 
         private static List<String> _FileTemplates;
+
         /// <summary>文件模版</summary>
         public static List<String> FileTemplates
         {
@@ -57,12 +63,18 @@ namespace XCoder
         }
 
         private ModelConfig _Config;
+
         /// <summary>配置</summary>
-        public ModelConfig Config { get { return _Config; } set { _Config = value; } }
+        public ModelConfig Config
+        {
+            get { return _Config; }
+            set { _Config = value; }
+        }
 
         //private String _LastTableKey;
         //private List<IDataTable> _LastTables;
         private List<IDataTable> _Tables;
+
         /// <summary>所有表</summary>
         public List<IDataTable> Tables
         {
@@ -79,6 +91,22 @@ namespace XCoder
                 //    _LastTableKey = key;
                 //}
                 //return _LastTables;
+                foreach (IDataTable dataTable in _Tables)
+                {
+                    dataTable.Fix();
+                    if (dataTable.DbType == DatabaseType.None)
+                    {
+                        dataTable.DbType = DAL.Create(Config.ConnName).DbType;
+                    }
+                    foreach (IDataColumn dataColumn in dataTable.Columns)
+                    {
+                        if (dataColumn.Name.IsNullOrEmpty())
+                        {
+                            dataColumn.Name = ModelResolver.Current.GetName(dataColumn.ColumnName);
+                            if (dataColumn.Name == "Item") dataColumn.Name ="ITEM";
+                        }
+                    }
+                }
                 return _Tables;
             }
             set { _Tables = value; }
@@ -87,16 +115,20 @@ namespace XCoder
         //private static ITranslate _Translate;
         ///// <summary>翻译接口</summary>
         //static ITranslate Translate { get { return _Translate ?? (_Translate = new NnhyServiceTranslate()); } }
+
         #endregion
 
         #region 构造
+
         static Engine()
         {
             Template.BaseClassName = typeof(XCoderBase).FullName;
         }
+
         #endregion
 
         #region 生成
+
         /// <summary>生成代码，参数由Config传入</summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
@@ -123,9 +155,10 @@ namespace XCoder
             var data = new Dictionary<String, Object>(StringComparer.OrdinalIgnoreCase);
             //data["Config"] = Config;
             data["Tables"] = Tables;
-            data["Table"] = table;
+            data["Table"]  = table;
 
             #region 配置
+
             // 复制表属性到配置
             var cfg = new ModelConfig();
             foreach (var pi in cfg.GetType().GetProperties(true))
@@ -137,6 +170,7 @@ namespace XCoder
             }
 
             #region 命名空间处理
+
             var NameSpace = cfg.NameSpace;
             var reg = new Regex(@"\$\((\w+)\)", RegexOptions.Compiled);
             NameSpace = reg.Replace(NameSpace, math =>
@@ -146,18 +180,21 @@ namespace XCoder
 
                 var pix = typeof(IDataTable).GetPropertyEx(key);
                 if (pix != null)
-                    return (String)table.GetValue(pix);
+                    return (String) table.GetValue(pix);
                 else
                     return table.Properties[key];
             });
             NewLife.Log.XTrace.WriteLine("NameSpace" + Config.NameSpace + "@" + NameSpace);
             cfg.NameSpace = NameSpace;
+
             #endregion
 
             data["Config"] = cfg;
+
             #endregion
 
             #region 模版预处理
+
             // 声明模版引擎
             //Template tt = new Template();
             Template.Debug = Config.Debug;
@@ -171,7 +208,7 @@ namespace XCoder
             if (p >= 0)
             {
                 tempKind = tempName.Substring(0, p + 1);
-                tempName = tempName.Substring(p + 1);
+                tempName = tempName.Substring(p    + 1);
             }
             if (tempKind == "[内置]")
             {
@@ -226,9 +263,11 @@ namespace XCoder
             var tt = Template.Create(templates);
             if (tempName.StartsWith("*")) tempName = tempName.Substring(1);
             tt.AssemblyName = tempName;
+
             #endregion
 
             #region 输出目录预处理
+
             var outpath = Config.OutputPath;
             // 使用正则替换处理 命名空间处已经定义
             //var reg = new Regex(@"\$\((\w+)\)", RegexOptions.Compiled);
@@ -239,13 +278,15 @@ namespace XCoder
 
                 var pix = typeof(IDataTable).GetPropertyEx(key);
                 if (pix != null)
-                    return (String)table.GetValue(pix);
+                    return (String) table.GetValue(pix);
                 else
                     return table.Properties[key];
             });
+
             #endregion
 
             #region 编译生成
+
             // 编译模版。这里至少要处理，只有经过了处理，才知道模版项是不是被包含的
             tt.Compile();
 
@@ -284,11 +325,14 @@ namespace XCoder
                 rs.Add(content);
             }
             return rs.ToArray();
+
             #endregion
         }
+
         #endregion
 
         #region 辅助
+
         /// <summary>获取文件编码</summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -301,6 +345,7 @@ namespace XCoder
                 return reader.CurrentEncoding;
             }
         }
+
         #endregion
     }
 }

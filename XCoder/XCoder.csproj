@@ -58,7 +58,8 @@
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="XCode, Version=9.11.7008.35192, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NewLife.XCode.9.11.2019.311\lib\net45\XCode.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\NewLifeX\Bin\net45\XCode.dll</HintPath>
     </Reference>
     <Reference Include="XTemplate, Version=2.0.6700.37161, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NewLife.XTemplate.2.0.6700.37161\lib\net45\XTemplate.dll</HintPath>
@@ -92,6 +93,16 @@
       <DependentUpon>FrmMDI.cs</DependentUpon>
     </Compile>
     <Compile Include="IXForm.cs" />
+    <Compile Include="Template\实体业务\扩展查询.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>扩展查询.xt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\实体业务\扩展查询1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>扩展查询.tt</DependentUpon>
+    </Compile>
     <Compile Include="Tools\FrmSecurity.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,9 +377,16 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <EmbeddedResource Include="Template\实体业务\对象操作.xt" />
-    <EmbeddedResource Include="Template\实体业务\扩展查询.xt" />
+    <None Include="Template\实体业务\扩展查询.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>扩展查询1.cs</LastGenOutput>
+    </None>
     <EmbeddedResource Include="XCoder.tt">
       <LastGenOutput>XCoder.log</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\实体业务\扩展查询.xt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>扩展查询.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -407,6 +425,11 @@
     <EmbeddedResource Include="XRegex\Sample\SQL查询\普通查询.txt" />
     <EmbeddedResource Include="XRegex\Sample\平衡组\算术表达式.txt" />
     <EmbeddedResource Include="XRegex\Sample\网页\最外层嵌套.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Template\实体业务\test.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
