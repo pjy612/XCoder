@@ -91,25 +91,33 @@ namespace XCoder
                 //    _LastTableKey = key;
                 //}
                 //return _LastTables;
+                return _Tables;
+            }
+            set
+            {
+                _Tables = value;
+                DatabaseType databaseType = DAL.Create(Config.ConnName).DbType;
+                if (databaseType == DatabaseType.SqlServer)
+                {
+                    _Tables.RemoveAll(r => r.TableName.StartsWith("Syncobj0x"));
+                }
                 foreach (IDataTable dataTable in _Tables)
                 {
                     dataTable.Fix();
                     if (dataTable.DbType == DatabaseType.None)
                     {
-                        dataTable.DbType = DAL.Create(Config.ConnName).DbType;
+                        dataTable.DbType = databaseType;
                     }
                     foreach (IDataColumn dataColumn in dataTable.Columns)
                     {
-                        if (dataColumn.Name.IsNullOrEmpty())
+                        if (dataColumn.Name.IsNullOrEmpty() || databaseType == DatabaseType.MySql)
                         {
                             dataColumn.Name = ModelResolver.Current.GetName(dataColumn.ColumnName);
-                            if (dataColumn.Name == "Item") dataColumn.Name ="ITEM";
+                            if (dataColumn.Name == "Item") dataColumn.Name = "ITEM";
                         }
                     }
                 }
-                return _Tables;
             }
-            set { _Tables = value; }
         }
 
         //private static ITranslate _Translate;
@@ -155,7 +163,7 @@ namespace XCoder
             var data = new Dictionary<String, Object>(StringComparer.OrdinalIgnoreCase);
             //data["Config"] = Config;
             data["Tables"] = Tables;
-            data["Table"]  = table;
+            data["Table"] = table;
 
             #region 配置
 
@@ -180,7 +188,7 @@ namespace XCoder
 
                 var pix = typeof(IDataTable).GetPropertyEx(key);
                 if (pix != null)
-                    return (String) table.GetValue(pix);
+                    return (String)table.GetValue(pix);
                 else
                     return table.Properties[key];
             });
@@ -208,7 +216,7 @@ namespace XCoder
             if (p >= 0)
             {
                 tempKind = tempName.Substring(0, p + 1);
-                tempName = tempName.Substring(p    + 1);
+                tempName = tempName.Substring(p + 1);
             }
             if (tempKind == "[内置]")
             {
@@ -278,7 +286,7 @@ namespace XCoder
 
                 var pix = typeof(IDataTable).GetPropertyEx(key);
                 if (pix != null)
-                    return (String) table.GetValue(pix);
+                    return (String)table.GetValue(pix);
                 else
                     return table.Properties[key];
             });
@@ -309,8 +317,17 @@ namespace XCoder
 
                 // 如果不覆盖，并且目标文件已存在，则跳过
                 if (!Config.Override && File.Exists(fileName)) continue;
+                string content;
+                try
+                {
+                    content = tt.Render(item.Name, data);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($@"{fileName}{ex.Message}");
+                    continue;
+                }
 
-                var content = tt.Render(item.Name, data);
 
                 var dir = Path.GetDirectoryName(fileName);
                 if (!String.IsNullOrEmpty(dir) && !Directory.Exists(dir)) Directory.CreateDirectory(dir);
