@@ -41,13 +41,13 @@ if(Table.Columns.Count>0)
         String dis = Field.DisplayName;
         if(!String.IsNullOrEmpty(dis)) dis=dis.Replace("\r\n"," ").Replace("'", " ").Replace("\"", "");
 #>
-        private <#=Field.DataType.Name#> _<#=Field.Name#>;
+        private <#=Field.DataType.Name.ToLower()=="string"? Field.DataType.Name : (Field.Nullable?Field.DataType.Name+"?":Field.DataType.Name)#> _<#=Field.Name#>;
         /// <summary><#=des#></summary>
         [DisplayName("<#=dis#>")]
         [Description("<#=des#>")]
         [DataObjectField(<#=Field.PrimaryKey.ToString().ToLower()#>, <#=Field.Identity.ToString().ToLower()#>, <#=Field.Nullable.ToString().ToLower()#>, <#=Field.Length#>)]
         [BindColumn("<#=Field.ColumnName#>", "<#=des#>", "<#=Field.RawType#>"<#if(Field.Master){#>, Master=<#=Field.Master.ToString().ToLower()#><#}#>)]
-        public virtual <#=Field.DataType==null?"":Field.DataType.Name#> <#=Field.Name#>
+        public virtual <#=Field.DataType.Name.ToLower()=="string"? Field.DataType.Name : (Field.Nullable?Field.DataType.Name+"?":Field.DataType.Name)#> <#=Field.Name#>
         {
             get { return _<#=Field.Name#>; }
             set { if (OnPropertyChanging(__.<#=Field.Name#>, value)) { _<#=Field.Name#> = value; OnPropertyChanged(__.<#=Field.Name#>); } }
@@ -151,7 +151,7 @@ if(Table.Columns.Count>0)
         if(!String.IsNullOrEmpty(des)) des=des.Replace("\r\n"," ");
 #>
         /// <summary><#=des#></summary>
-        <#=Field.DataType==null?"":Field.DataType.Name#> <#=Field.Name#> { get; set; }
+        <#=Field.DataType.Name.ToLower()=="string"? Field.DataType.Name : (Field.Nullable?Field.DataType.Name+"?":Field.DataType.Name)#> <#=Field.Name#> { get; set; }
 <#
     }
 #>        #endregion<#
