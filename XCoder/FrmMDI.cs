@@ -159,35 +159,6 @@ namespace XCoder
         private void CheckUpdate(Boolean auto)
         {
             if (auto) XTrace.WriteLine("自动更新！");
-
-            Upgrade.DeleteBuckup();
-
-            var cfg = XConfig.Current;
-            if (cfg.LastUpdate.Date < DateTime.Now.Date || !auto)
-            {
-                cfg.LastUpdate = DateTime.Now;
-                cfg.Save();
-
-                var root = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                var up = new Upgrade();
-                up.Log = XTrace.Log;
-                up.Name = "XCoder";
-                up.Server = cfg.UpdateServer;
-                up.UpdatePath = root.CombinePath(up.UpdatePath);
-                if (up.Check())
-                {
-                    up.Download();
-                    if (!auto || MessageBox.Show("发现新版本{0}，是否更新？".F(up.Links[0].Time), "自动更新", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        up.Update();
-                }
-                else if (!auto)
-                {
-                    if (up.Links != null && up.Links.Length > 0)
-                        MessageBox.Show("没有可用更新！最新{0}".F(up.Links[0].Time), "自动更新");
-                    else
-                        MessageBox.Show("没有可用更新！", "自动更新");
-                }
-            }
         }
         #endregion
     }
