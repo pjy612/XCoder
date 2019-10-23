@@ -778,45 +778,7 @@ namespace XCoder
             }
         }
         #endregion
-
-        #region 网页
-        private void webBrowser1_DocumentCompleted(Object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            // 网页加载完成后，自动向下滚动一段距离，越过头部
-            webBrowser1.Document.Window.ScrollTo(0, 90);
-        }
-
-        private void webBrowser1_Navigating(Object sender, WebBrowserNavigatingEventArgs e)
-        {
-            if (e.Url != null)
-            {
-                var url = e.Url.ToString();
-                if (!url.IsNullOrWhiteSpace())
-                {
-                    // 精简版替换为完整版
-                    var asm = AssemblyX.Create(Assembly.GetExecutingAssembly());
-                    url = url.Replace("/archiver/", "/");
-                    if (url.Contains("?"))
-                        url += "&r=XCoder_v" + asm.CompileVersion;
-                    else
-                        url += "?r=XCoder_v" + asm.CompileVersion;
-                    Process.Start(url);
-                    e.Cancel = true;
-                }
-            }
-        }
-
-        private void timer1_Tick(Object sender, EventArgs e)
-        {
-            timer1.Enabled = false;
-
-            var asm = AssemblyX.Create(Assembly.GetExecutingAssembly());
-            //webBrowser1.Navigate("http://www.newlifex.com/archiver/showforum-2.aspx", false);
-            webBrowser1.Url = new Uri("http://www.newlifex.com/archiver/showforum-2.aspx?r=XCoder_v" + asm.CompileVersion);
-            webBrowser1.Navigating += webBrowser1_Navigating;
-        }
-        #endregion
-
+        
         #region 添加模型-@宁波-小董 2013
         private void 添加模型ToolStripMenuItem_Click(Object sender, EventArgs e)
         {

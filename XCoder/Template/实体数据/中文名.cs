@@ -46,7 +46,8 @@ if(Table.Columns.Count>0)
         [DisplayName("<#=dis#>")]
         [Description("<#=des#>")]
         [DataObjectField(<#=Field.PrimaryKey.ToString().ToLower()#>, <#=Field.Identity.ToString().ToLower()#>, <#=Field.Nullable.ToString().ToLower()#>, <#=Field.Length#>)]
-        [BindColumn("<#=Field.ColumnName#>", "<#=des#>", "<#=Field.RawType#>"<#if(Field.Master){#>, Master=<#=Field.Master.ToString().ToLower()#><#}#>)]
+        [BindColumn("<#=Field.ColumnName#>", "<#=des#>", "<#=Field.RawType#>" <
+#if (Field.Master){#>, Master=<#=Field.Master.ToString().ToLower()#><#}#>)]
         public virtual <#=Field.DataType.Name.ToLower()=="string"? Field.DataType.Name : (Field.Nullable?Field.DataType.Name+"?":Field.DataType.Name)#> <#=Field.Name#>
         {
             get { return _<#=Field.Name#>; }
@@ -56,7 +57,7 @@ if(Table.Columns.Count>0)
     }
 #>        #endregion
 
-        #region 获取/设置 字段值
+#region 获取/设置 字段值
         /// <summary>
         /// 获取/设置 字段值。
         /// 一个索引，基类使用反射实现。
@@ -87,8 +88,13 @@ if(Table.Columns.Count>0)
     foreach(IDataColumn Field in Table.Columns)
     { 
         if(conv.GetMethod("To"+Field.DataType.Name, new Type[]{typeof(Object)})!=null){
+                if(Field.Nullable && Field.DataType.Name.ToLower()!="string"){
+#>
+                    case __.<#=Field.Name#> : _<#=Field.Name#> = value !=null ? Convert.To<#=Field.DataType.Name#>(value):(<#=Field.DataType.Name+"?"#>)null; break;<#
+                }else{
 #>
                     case __.<#=Field.Name#> : _<#=Field.Name#> = Convert.To<#=Field.DataType.Name#>(value); break;<#
+                }
         }else{
 #>
                     case __.<#=Field.Name#> : _<#=Field.Name#> = (<#=Field.DataType.Name#>)value; break;<#
@@ -103,7 +109,7 @@ if(Table.Columns.Count>0)
 <#
 }
 #>
-        #region 字段名
+#region 字段名
         /// <summary>取得<#=tdis#>字段信息的快捷方式</summary>
         public partial class _
         {<#
@@ -134,7 +140,7 @@ foreach(IDataColumn Field in Table.GetAllColumns(Tables, true))
 }
 #>
         }
-        #endregion
+#endregion
     }
 
     /// <summary><#=tdis#>接口</summary><# if(tdis!=tdes){#>
@@ -144,7 +150,7 @@ foreach(IDataColumn Field in Table.GetAllColumns(Tables, true))
 if(Table.Columns.Count>0)
 {
 #>
-        #region 属性<#
+#region 属性<#
     foreach(IDataColumn Field in Table.Columns)
     {
         String des=Field.Description;
@@ -159,12 +165,12 @@ if(Table.Columns.Count>0)
     {
 #>
 
-        #region 获取/设置 字段值
+#region 获取/设置 字段值
         /// <summary>获取/设置 字段值。</summary>
         /// <param name="name">字段名</param>
         /// <returns></returns>
         Object this[String name] { get; set; }
-        #endregion<#
+#endregion<#
     }
 }
 #>

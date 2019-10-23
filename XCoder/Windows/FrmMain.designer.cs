@@ -39,7 +39,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lb_Status = new System.Windows.Forms.ToolStripStatusLabel();
             this.gbConfig = new System.Windows.Forms.GroupBox();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.lbEditHeader = new System.Windows.Forms.LinkLabel();
             this.frmItems = new System.Windows.Forms.Button();
             this.cbRenderGenEntity = new System.Windows.Forms.CheckBox();
@@ -246,7 +245,6 @@
             this.gbConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbConfig.Controls.Add(this.webBrowser1);
             this.gbConfig.Controls.Add(this.lbEditHeader);
             this.gbConfig.Controls.Add(this.frmItems);
             this.gbConfig.Controls.Add(this.cbRenderGenEntity);
@@ -271,19 +269,6 @@
             this.gbConfig.Size = new System.Drawing.Size(725, 193);
             this.gbConfig.TabIndex = 26;
             this.gbConfig.TabStop = false;
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser1.Location = new System.Drawing.Point(389, 19);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.Size = new System.Drawing.Size(336, 168);
-            this.webBrowser1.TabIndex = 54;
-            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // lbEditHeader
             // 
@@ -694,12 +679,6 @@
             this.label9.TabIndex = 32;
             this.label9.Text = "两种用法：";
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -793,7 +772,6 @@
         private System.Windows.Forms.ToolStripMenuItem oracle客户端运行时检查ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem qQ群1600800ToolStripMenuItem1;
         private System.Windows.Forms.LinkLabel lbEditHeader;
-        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.ToolStripMenuItem 自动格式化设置ToolStripMenuItem;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnRefreshTable;
