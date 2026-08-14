@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NewLife;
+using NewLife.Data;
 using NewLife.Log;
 using NewLife.MQTT;
 using NewLife.MQTT.Messaging;
@@ -68,7 +69,7 @@ namespace XNet
                 Password = txtPass.Text,
 
                 Log = _log,
-                LogMessage = true,
+                //LogMessage = true,
             };
             client.Received += Client_Received;
             client.Connected += (s, e) => XTrace.WriteLine("连接成功");

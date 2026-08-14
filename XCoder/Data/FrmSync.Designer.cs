@@ -39,11 +39,11 @@
             this.btnSync = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.gbSetting = new System.Windows.Forms.GroupBox();
+            this.btnDifferent = new System.Windows.Forms.Button();
             this.cbIgnoreError = new System.Windows.Forms.CheckBox();
             this.cbSyncSchema = new System.Windows.Forms.CheckBox();
             this.btnSelectOther = new System.Windows.Forms.Button();
             this.btnSelectAll = new System.Windows.Forms.Button();
-            this.btnDifferent = new System.Windows.Forms.Button();
             this.gbSource.SuspendLayout();
             this.gbTarget.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -56,9 +56,9 @@
             this.gbSource.Controls.Add(this.label4);
             this.gbSource.ForeColor = System.Drawing.Color.DeepPink;
             this.gbSource.Location = new System.Drawing.Point(13, 13);
-            this.gbSource.Margin = new System.Windows.Forms.Padding(4);
+            this.gbSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbSource.Name = "gbSource";
-            this.gbSource.Padding = new System.Windows.Forms.Padding(4);
+            this.gbSource.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbSource.Size = new System.Drawing.Size(396, 63);
             this.gbSource.TabIndex = 9;
             this.gbSource.TabStop = false;
@@ -66,12 +66,14 @@
             // 
             // cbConn
             // 
+            this.cbConn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbConn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbConn.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cbConn.ForeColor = System.Drawing.Color.DeepPink;
             this.cbConn.FormattingEnabled = true;
-            this.cbConn.Location = new System.Drawing.Point(87, 18);
-            this.cbConn.Margin = new System.Windows.Forms.Padding(4);
+            this.cbConn.Location = new System.Drawing.Point(70, 18);
+            this.cbConn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbConn.Name = "cbConn";
             this.cbConn.Size = new System.Drawing.Size(301, 32);
             this.cbConn.TabIndex = 13;
@@ -90,7 +92,7 @@
             // 
             this.btnConnection.ForeColor = System.Drawing.Color.DeepPink;
             this.btnConnection.Location = new System.Drawing.Point(417, 27);
-            this.btnConnection.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConnection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnConnection.Name = "btnConnection";
             this.btnConnection.Size = new System.Drawing.Size(78, 38);
             this.btnConnection.TabIndex = 8;
@@ -100,15 +102,17 @@
             // 
             // gbTarget
             // 
+            this.gbTarget.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gbTarget.Controls.Add(this.btnConnect2);
             this.gbTarget.Controls.Add(this.cbTarget);
             this.gbTarget.Controls.Add(this.label1);
             this.gbTarget.Enabled = false;
             this.gbTarget.ForeColor = System.Drawing.Color.DeepPink;
             this.gbTarget.Location = new System.Drawing.Point(558, 13);
-            this.gbTarget.Margin = new System.Windows.Forms.Padding(4);
+            this.gbTarget.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbTarget.Name = "gbTarget";
-            this.gbTarget.Padding = new System.Windows.Forms.Padding(4);
+            this.gbTarget.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbTarget.Size = new System.Drawing.Size(531, 63);
             this.gbTarget.TabIndex = 10;
             this.gbTarget.TabStop = false;
@@ -116,9 +120,10 @@
             // 
             // btnConnect2
             // 
+            this.btnConnect2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConnect2.ForeColor = System.Drawing.Color.DeepPink;
             this.btnConnect2.Location = new System.Drawing.Point(445, 15);
-            this.btnConnect2.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConnect2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnConnect2.Name = "btnConnect2";
             this.btnConnect2.Size = new System.Drawing.Size(78, 38);
             this.btnConnect2.TabIndex = 13;
@@ -128,12 +133,14 @@
             // 
             // cbTarget
             // 
+            this.cbTarget.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbTarget.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTarget.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cbTarget.ForeColor = System.Drawing.Color.DeepPink;
             this.cbTarget.FormattingEnabled = true;
-            this.cbTarget.Location = new System.Drawing.Point(88, 20);
-            this.cbTarget.Margin = new System.Windows.Forms.Padding(4);
+            this.cbTarget.Location = new System.Drawing.Point(69, 18);
+            this.cbTarget.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbTarget.Name = "cbTarget";
             this.cbTarget.Size = new System.Drawing.Size(349, 32);
             this.cbTarget.TabIndex = 13;
@@ -150,9 +157,10 @@
             // 
             // btnSync
             // 
+            this.btnSync.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSync.ForeColor = System.Drawing.Color.DeepPink;
             this.btnSync.Location = new System.Drawing.Point(990, 32);
-            this.btnSync.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSync.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSync.Name = "btnSync";
             this.btnSync.Size = new System.Drawing.Size(78, 38);
             this.btnSync.TabIndex = 14;
@@ -178,6 +186,8 @@
             // 
             // gbSetting
             // 
+            this.gbSetting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gbSetting.Controls.Add(this.btnDifferent);
             this.gbSetting.Controls.Add(this.btnSync);
             this.gbSetting.Controls.Add(this.cbIgnoreError);
@@ -187,13 +197,25 @@
             this.gbSetting.Enabled = false;
             this.gbSetting.ForeColor = System.Drawing.Color.DeepPink;
             this.gbSetting.Location = new System.Drawing.Point(13, 84);
-            this.gbSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.gbSetting.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbSetting.Name = "gbSetting";
-            this.gbSetting.Padding = new System.Windows.Forms.Padding(4);
+            this.gbSetting.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbSetting.Size = new System.Drawing.Size(1076, 85);
             this.gbSetting.TabIndex = 12;
             this.gbSetting.TabStop = false;
             this.gbSetting.Text = "参数";
+            // 
+            // btnDifferent
+            // 
+            this.btnDifferent.ForeColor = System.Drawing.Color.DeepPink;
+            this.btnDifferent.Location = new System.Drawing.Point(181, 32);
+            this.btnDifferent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDifferent.Name = "btnDifferent";
+            this.btnDifferent.Size = new System.Drawing.Size(78, 38);
+            this.btnDifferent.TabIndex = 19;
+            this.btnDifferent.Text = "选差异";
+            this.btnDifferent.UseVisualStyleBackColor = true;
+            this.btnDifferent.Click += new System.EventHandler(this.btnDifferent_Click);
             // 
             // cbIgnoreError
             // 
@@ -217,7 +239,7 @@
             // 
             this.btnSelectOther.ForeColor = System.Drawing.Color.DeepPink;
             this.btnSelectOther.Location = new System.Drawing.Point(95, 32);
-            this.btnSelectOther.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSelectOther.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSelectOther.Name = "btnSelectOther";
             this.btnSelectOther.Size = new System.Drawing.Size(78, 38);
             this.btnSelectOther.TabIndex = 16;
@@ -229,7 +251,7 @@
             // 
             this.btnSelectAll.ForeColor = System.Drawing.Color.DeepPink;
             this.btnSelectAll.Location = new System.Drawing.Point(9, 32);
-            this.btnSelectAll.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSelectAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSelectAll.Name = "btnSelectAll";
             this.btnSelectAll.Size = new System.Drawing.Size(78, 38);
             this.btnSelectAll.TabIndex = 15;
@@ -237,22 +259,9 @@
             this.btnSelectAll.UseVisualStyleBackColor = true;
             this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
-            // btnDifferent
-            // 
-            this.btnDifferent.ForeColor = System.Drawing.Color.DeepPink;
-            this.btnDifferent.Location = new System.Drawing.Point(181, 32);
-            this.btnDifferent.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDifferent.Name = "btnDifferent";
-            this.btnDifferent.Size = new System.Drawing.Size(78, 38);
-            this.btnDifferent.TabIndex = 19;
-            this.btnDifferent.Text = "选差异";
-            this.btnDifferent.UseVisualStyleBackColor = true;
-            this.btnDifferent.Click += new System.EventHandler(this.btnDifferent_Click);
-            // 
             // FrmSync
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1104, 695);
             this.Controls.Add(this.gbSetting);
             this.Controls.Add(this.dataGridView1);

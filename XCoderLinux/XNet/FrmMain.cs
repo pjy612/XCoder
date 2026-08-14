@@ -35,7 +35,7 @@ namespace XNet
         #region 窗体
         static FrmMain()
         {
-            _task = Task.Factory.StartNew(() => GetNetServers());
+            _task = TaskEx.Factory.StartNew(() => GetNetServers());
         }
 
         public FrmMain() : base(Orientation.Horizontal, 2)
@@ -355,7 +355,7 @@ namespace XNet
         //    }
         //}
 
-        private Task _Send;
+        private TaskEx _Send;
         private void btnSend_Click(Object sender, EventArgs e)
         {
             var str = txtSend.Buffer.Text;
@@ -407,7 +407,7 @@ namespace XNet
 
                         list.Add(client);
                     }
-                    var ts = new List<Task>();
+                    var ts = new List<TaskEx>();
                     for (var i = 0; i < ths; i++)
                     {
                         var task = list[i].SendConcurrency(pk, count, sleep);
@@ -426,7 +426,7 @@ namespace XNet
                     for (var i = 0; i < count && _Server != null; i++)
                     {
                         var sw = Stopwatch.StartNew();
-                        var cs = await _Server.SendAllAsync(buf);
+                        var cs = await _Server.SendAllAsync((ArrayPacket)buf);
                         sw.Stop();
                         BizLog.Info("{3}/{4} 已向[{0}]个客户端发送[{1}]数据 {2:n0}ms", cs, buf.Length, sw.ElapsedMilliseconds, i + 1, count);
                         if (sleep > 0) await TaskEx.Delay(sleep);

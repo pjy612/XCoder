@@ -1,23 +1,24 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>XCoder</AssemblyName>
     <RootNamespace>XCoder</RootNamespace>
     <AssemblyTitle>新生命码神工具</AssemblyTitle>
-    <Description>众多开发者工具</Description>
+    <Description>码神工具跨平台版。代码生成、网络工具、API工具、串口工具、正则工具、图标工具、加解密工具、地图接口</Description>
     <Company>新生命开发团队</Company>
-    <Copyright>©2002-2019 新生命开发团队</Copyright>
-    <Version>8.0.2019.1212</Version>
-    <FileVersion>8.0.2019.1212</FileVersion>
-    <AssemblyVersion>8.0.*</AssemblyVersion>
+    <Copyright>©2002-2026 NewLife</Copyright>
+    <VersionPrefix>8.0</VersionPrefix>
+    <VersionSuffix>$([System.DateTime]::Now.ToString(`yyyy.MMdd`))</VersionSuffix>
+    <Version>$(VersionPrefix).$(VersionSuffix)</Version>
+    <FileVersion>$(Version)</FileVersion>
+    <AssemblyVersion>$(VersionPrefix).*</AssemblyVersion>
     <Deterministic>false</Deterministic>
     <ApplicationIcon>..\XCoder\leaf.ico</ApplicationIcon>
-    <OutputPath>..\..\XCoderLinux\</OutputPath>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <DefineConstants>TRACE;NC30;__CORE__</DefineConstants>
+    <OutputPath>..\Bin\XCoderLinux\</OutputPath>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -47,11 +48,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="GtkSharp" Version="3.24.24.34" />
-    <PackageReference Include="NewLife.Core" Version="9.0.2022.216-beta2" />
-    <PackageReference Include="NewLife.XCode" Version="11.0.2022.216-beta2" />
-    <PackageReference Include="System.IO.Ports" Version="6.0.0" />
-    <PackageReference Include="System.Management" Version="6.0.0" />
+    <PackageReference Include="GtkSharp" Version="3.24.24.95" />
+    <PackageReference Include="NewLife.Core" Version="11.13.2026.308" />
+    <PackageReference Include="NewLife.Stardust" Version="3.7.2026.307" />
+    <PackageReference Include="NewLife.XCode" Version="11.25.2026.302" />
+    <PackageReference Include="System.IO.Ports" Version="10.0.3" />
+    <PackageReference Include="System.Management" Version="10.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -73,14 +75,5 @@
       <DependentUpon>SerialPortList.cs</DependentUpon>
     </Compile>
   </ItemGroup>
-
-  <!--<ItemGroup>
-    <Reference Include="NewLife.Core">
-      <HintPath>..\..\Bin\netstandard2.1\NewLife.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="XCode">
-      <HintPath>..\..\Bin\netstandard2.1\XCode.dll</HintPath>
-    </Reference>
-  </ItemGroup>-->
 
 </Project>
